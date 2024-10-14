@@ -1,11 +1,13 @@
+package semaphore;
+
 import java.util.concurrent.TimeUnit;
 
-public class Philosophe extends Thread {
+public class PhilosopheBis extends Thread {
 
     private String nom;
-    private Fourchette gauche, droite;
+    private FourchetteBis gauche, droite;
 
-    public Philosophe(String nom, Fourchette gauche, Fourchette droite) {
+    public PhilosopheBis(String nom, FourchetteBis gauche, FourchetteBis droite) {
         this.nom = nom;
         this.gauche = gauche;
         this.droite = droite;
@@ -19,19 +21,19 @@ public class Philosophe extends Thread {
         this.nom = nom;
     }
 
-    public Fourchette getGauche() {
+    public FourchetteBis getGauche() {
         return gauche;
     }
 
-    public void setGauche(Fourchette gauche) {
+    public void setGauche(FourchetteBis gauche) {
         this.gauche = gauche;
     }
 
-    public Fourchette getDroite() {
+    public FourchetteBis getDroite() {
         return droite;
     }
 
-    public void setDroite(Fourchette droite) {
+    public void setDroite(FourchetteBis droite) {
         this.droite = droite;
     }
 
@@ -49,26 +51,18 @@ public class Philosophe extends Thread {
     public void run() {
         try {
             while (true) {
-                if (gauche.tryLock(500, TimeUnit.MILLISECONDS)) {
+                if (gauche.tryAcquire(100, TimeUnit.MILLISECONDS)) {
                     try {
-                        gauche.prendre();
-                        //System.out.println(nom + " a pris " + gauche.getNom());
-                        if (droite.tryLock(500, TimeUnit.MILLISECONDS)) {
+                        if (droite.tryAcquire(100, TimeUnit.MILLISECONDS)) {
                             try {
-                                droite.prendre();
-                                //System.out.println(nom + " a pris " + droite.getNom());
                                 manger();
                             } finally {
-                                droite.unlock();
-                                droite.relacher();
-                                //System.out.println(nom + " a relâché " + droite.getNom());
+                                droite.release();
                             }
                             penser();
                         }
                     } finally {
-                        gauche.unlock();
-                        gauche.relacher();
-                        //System.out.println(nom + " a relâché " + gauche.getNom());
+                        gauche.release();
                     }
                 }
             }
