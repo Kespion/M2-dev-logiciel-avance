@@ -21,7 +21,7 @@ public class Main {
     public static void ScenarioReentrantLock() throws InterruptedException {
         List<Fourchette> fourchettes = new ArrayList<>();
         for (int i = 0; i < NOMBRE_DE_PHILOSOPHES; i++) {
-            fourchettes.add(new Fourchette("Fourchette " + i));
+            fourchettes.add(new Fourchette("Fourchett " + i));
         }
 
         List<Philosophe> philosophes = new ArrayList<>();
