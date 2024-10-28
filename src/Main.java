@@ -9,6 +9,11 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
+        /**
+         * Pour provoquer un deadlock :
+         * - Mettre un nombre de paniers inférieur ou égal au nombre de cabines ET avoir un nombre de clients supérieur au nombre de cabines
+         **/
+
         Piscine piscine = new Piscine(NOMBRE_CABINES, NOMBRE_PANIERS);
 
         List<Client> clients = new ArrayList<>();
