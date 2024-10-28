@@ -5,7 +5,7 @@ public class Main {
 
     public static final int NOMBRE_CLIENTS = 10;
     public static final int NOMBRE_CABINES = 5;
-    public static final int NOMBRE_PANIERS = 5;
+    public static final int NOMBRE_PANIERS = 8;
 
     public static void main(String[] args) throws InterruptedException {
 
