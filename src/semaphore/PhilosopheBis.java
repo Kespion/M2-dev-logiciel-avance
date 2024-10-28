@@ -52,8 +52,10 @@ public class PhilosopheBis extends Thread {
         try {
             while (true) {
                 if (gauche.tryAcquire(100, TimeUnit.MILLISECONDS)) {
+                    //Thread.sleep((int)(Math.random() * 3000) + 3000); // Pour créer un dealock
                     try {
                         if (droite.tryAcquire(100, TimeUnit.MILLISECONDS)) {
+                            //Thread.sleep((int)(Math.random() * 3000) + 3000); // Pour créer un deadlock
                             try {
                                 manger();
                             } finally {

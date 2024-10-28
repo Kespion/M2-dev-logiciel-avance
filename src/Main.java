@@ -12,9 +12,17 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        //ScenarioReentrantLock();
+        /**
+         * Pour créer un deadlock :
+         * - Uncomment les lignes où il y a des Thread.sleep() dans la méthode run() des classes Philosophe et PhilosopheBis
+         *
+         * Pour choisir le scénario avec les ReentrantLocks ou avec les Sémaphores :
+         * - Uncomment les lignes suivantes
+         **/
 
-        ScenarioSemaphore();
+        ScenarioReentrantLock();
+
+        //ScenarioSemaphore();
 
     }
 

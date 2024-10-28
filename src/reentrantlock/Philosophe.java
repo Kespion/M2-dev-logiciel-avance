@@ -52,10 +52,12 @@ public class Philosophe extends Thread {
         try {
             while (true) {
                 if (gauche.tryLock(100, TimeUnit.MILLISECONDS)) {
+                    //Thread.sleep((int)(Math.random() * 3000) + 3000); // Pour créer un deadlock
                     try {
                         gauche.prendre();
                         //System.out.println(nom + " a pris " + gauche.getNom());
                         if (droite.tryLock(100, TimeUnit.MILLISECONDS)) {
+                            //Thread.sleep((int)(Math.random() * 3000) + 3000); // Pour créer un dealock
                             try {
                                 droite.prendre();
                                 //System.out.println(nom + " a pris " + droite.getNom());
