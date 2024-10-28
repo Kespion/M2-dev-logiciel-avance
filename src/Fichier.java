@@ -46,8 +46,8 @@ public class Fichier extends ReentrantReadWriteLock {
             wait();
         }
         setEnEcriture(true);
-        this.contenu += writer.getMessage();
-        System.out.println(writer.getNom() + " a écrit\n" + writer.getMessage() + "dans le fichier " + this.getNom());
+        this.contenu += "\t" + writer.getMessage() + "\n";
+        System.out.println(writer.getNom() + " a écrit : <" + writer.getMessage() + "> dans le fichier " + this.getNom());
         setEnEcriture(false);
         notifyAll();
     }

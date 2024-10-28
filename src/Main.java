@@ -19,7 +19,7 @@ public class Main {
             users.add(new Reader("Reader N°" + i, fichiers));
         }
         for (int i = 0; i < NOMBRE_WRITERS; i++) {
-            users.add(new Writer("Writer N°" + i, fichiers, "\tHello from Writer N°" + i + "\n"));
+            users.add(new Writer("Writer N°" + i, fichiers, "Hello from Writer N°" + i));
         }
 
         for (User user : users) {
