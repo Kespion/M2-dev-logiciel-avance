@@ -12,32 +12,66 @@ public class UserDao {
     }
 
     public void createUser(User user) {
-        Transaction tx = session.beginTransaction();
-        session.save(user);
-        tx.commit();
-        session.close();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.save(user);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
     }
 
     public User getUser(Long id) {
-        User user = session.get(User.class, id);
-        session.close();
+        Transaction tx = null;
+        User user = null;
+        try {
+            tx = session.beginTransaction();
+            user = (User) session.get(User.class, id);
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
         return user;
     }
 
     // Méthodes update et delete
 
     public void updateUser(User user) {
-        Transaction tx = session.beginTransaction();
-        session.update(user);
-        tx.commit();
-        session.close();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(user);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
     }
 
     public void deleteUser(Long id) {
-        Transaction tx = session.beginTransaction();
-        session.delete(getUser(id));
-        tx.commit();
-        session.close();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(id);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
     }
 
 }
