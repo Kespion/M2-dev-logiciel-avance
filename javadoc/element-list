@@ -1,0 +1,7 @@
+com.game
+com.game.cards
+com.game.dao
+com.game.matches
+com.game.players
+com.game.repository
+com.game.utils
